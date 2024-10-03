@@ -12,7 +12,6 @@ import WithdrawErrorMessage from "@/components/WithdrawErrorMessage";
 const UserWithdrawal = () => {
   const dispatch = useDispatch();
   const { error, bills } = useSelector((state: RootState) => state.atm);
-  const { history } = useSelector((state: RootState) => state.history);
   const color = useThemeColor({}, 'text');
   
   const [amount, setAmount] = useState('');

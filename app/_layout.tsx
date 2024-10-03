@@ -13,6 +13,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { RootSiblingParent } from "react-native-root-siblings";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,17 +40,25 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack
+            screenOptions={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+            }}
+            initialRouteName="(tabs)"
+          >
             <Stack.Screen
-              name="withdrawal"
+              name="(tabs)"
               options={{
-                headerShown: true,
-                title: "Withdrawal",
+                headerShown: false,
+                headerBackVisible: false,
+                headerTitleAlign: "center",
               }}
             />
+            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
           </Stack>
+          </GestureHandlerRootView>
         </ThemeProvider>
       </RootSiblingParent>
     </Provider>
