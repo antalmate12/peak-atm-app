@@ -11,7 +11,6 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
-// import redux provider 
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 
@@ -40,6 +39,13 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="withdrawal"
+            options={{
+              headerShown: true,
+              title: "Withdrawal",
+            }}
+          />
         </Stack>
       </ThemeProvider>
     </Provider>
