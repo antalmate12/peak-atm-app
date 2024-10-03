@@ -8,3 +8,5 @@ export const store = configureStore({
     history: historyReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;

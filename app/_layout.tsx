@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-
+import { RootSiblingParent } from "react-native-root-siblings";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 
@@ -35,19 +35,23 @@ export default function RootLayout() {
 
   return (
     <Provider store={store}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-          <Stack.Screen
-            name="withdrawal"
-            options={{
-              headerShown: true,
-              title: "Withdrawal",
-            }}
-          />
-        </Stack>
-      </ThemeProvider>
+      <RootSiblingParent>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+            <Stack.Screen
+              name="withdrawal"
+              options={{
+                headerShown: true,
+                title: "Withdrawal",
+              }}
+            />
+          </Stack>
+        </ThemeProvider>
+      </RootSiblingParent>
     </Provider>
   );
 }
