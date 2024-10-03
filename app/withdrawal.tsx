@@ -5,15 +5,20 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { RootState } from "@/store/store";
 import { withdrawThunk } from "@/store/thunks/withdraw.thunk";
+import { Transaction } from "@/store/slices/historySlice";
 
 const UserWithdrawal = () => {
-  const [amount, setAmount] = useState("");
   const dispatch = useDispatch();
   const { error, bills } = useSelector((state: RootState) => state.atm);
   const  { history } = useSelector((state: RootState) => state.history);
 
+  const [amount, setAmount] = useState("");
+  const [transactionDetails, setTransactionDetails] = useState<Transaction | null>(null);
+  
+
   const handleWithdraw = () => {
-    dispatch(withdrawThunk(parseInt(amount)) as unknown as any);
+    const res: Transaction = dispatch(withdrawThunk(parseInt(amount)) as unknown as any);
+    setTransactionDetails(res);
   };
 
   return (
@@ -32,8 +37,15 @@ const UserWithdrawal = () => {
         <ThemedText>Bills dispensed: {JSON.stringify(bills)}</ThemedText>
       )}
 
-      <ThemedText>History:</ThemedText>
-      <ThemedText>{JSON.stringify(history)}</ThemedText>
+
+        {
+          transactionDetails &&
+          <ThemedText>
+            {JSON.stringify(transactionDetails)}
+          </ThemedText>
+        }
+
+
     </ThemedView>
   );
 };
