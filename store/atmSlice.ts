@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Toast from "react-native-root-toast";
 
-type AllowedBills = "20000" | "10000" | "5000" | "2000";
+export type AllowedBills = "20000" | "10000" | "5000" | "2000";
 export type AtmBills = Record<AllowedBills, number>;
 
 const BILL_VALUES: AllowedBills[] = ["20000", "10000", "5000", "2000"];
