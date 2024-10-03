@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
-import { withdraw } from "@/store/atmSlice";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { RootState } from "@/store/store";
+import { withdrawThunk } from "@/store/thunks/withdraw.thunk";
 
 const UserWithdrawal = () => {
   const [amount, setAmount] = useState("");
   const dispatch = useDispatch();
   const { error, bills } = useSelector((state: RootState) => state.atm);
+  const  { history } = useSelector((state: RootState) => state.history);
 
   const handleWithdraw = () => {
-    const dispensed = dispatch(withdraw(parseInt(amount)));
+    dispatch(withdrawThunk(parseInt(amount)) as unknown as any);
   };
 
   return (
@@ -30,6 +31,9 @@ const UserWithdrawal = () => {
       ) : (
         <ThemedText>Bills dispensed: {JSON.stringify(bills)}</ThemedText>
       )}
+
+      <ThemedText>History:</ThemedText>
+      <ThemedText>{JSON.stringify(history)}</ThemedText>
     </ThemedView>
   );
 };
