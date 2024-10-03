@@ -2,8 +2,8 @@ import { Image, StyleSheet, Platform } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/themed/ThemedText';
+import { ThemedView } from '@/components/themed/ThemedView';
 import { Link } from 'expo-router';
 
 export default function HomeScreen() {
@@ -22,7 +22,8 @@ export default function HomeScreen() {
       </ThemedView>
 
     <ThemedView>
-      <Link href={'/withdrawal'}>Withdrawal screen</Link>
+      <Link href={'/withdrawal'}>
+      <ThemedText>Withdrawal screen</ThemedText></Link>
     </ThemedView>
 
       <ThemedView style={styles.stepContainer}>
