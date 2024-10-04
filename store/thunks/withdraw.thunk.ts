@@ -21,29 +21,24 @@ export const withdrawThunk = (amount: number) => {
     let remainingAmount = amount;
     const availableBills = { ...state.atm.bills };
 
-    /**
-     * Check if the exact amount can be dispensed
-     */
     const possibleCheckRes = checkIfPossibleToDispense(remainingAmount);
     if (possibleCheckRes !== true) {
       return possibleCheckRes;
     }
 
-    // Nagytól kicsiig haladunk a címleteken
     for (const bill of BILL_VALUES) {
       const billValue = parseInt(bill);
       while (
         remainingAmount >= billValue &&
         availableBills[bill as keyof AtmBills] > 0
       ) {
-        // Ellenőrizzük, hogy ha ebből a címletből adunk, a maradék osztható lesz-e a kisebb címletekkel
         const potentialRemaining = remainingAmount - billValue;
         if (potentialRemaining % 2000 === 0) {
           dispensedBills[bill as keyof AtmBills] += 1;
           availableBills[bill as keyof AtmBills] -= 1;
           remainingAmount = potentialRemaining;
         } else {
-          break; // Ha nem osztható a maradék, kilépünk a loopból, hogy más címleteket próbáljunk
+          break;
         }
       }
     }
