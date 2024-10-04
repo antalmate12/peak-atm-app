@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import atmReducer from './slices/atmSlice';
-import historyReducer from './slices/historySlice';
+import rootReducer from "./configure-store";
+import { persistStore } from 'redux-persist';
 
-export const store = configureStore({
-  reducer: {
-    atm: atmReducer,
-    history: historyReducer,
-  },
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
+const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-
-export default store;
+// export type RootState = ReturnType<typeof store.getState>;
+export { store, persistor };

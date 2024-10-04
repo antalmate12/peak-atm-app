@@ -8,7 +8,7 @@ export interface Transaction {
   dispensed: AtmBills;
 }
 
-interface HistoryState {
+export interface HistoryState {
   history: Transaction[];
 }
 

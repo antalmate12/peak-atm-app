@@ -1,9 +1,9 @@
-import { RootState } from "@/store/store";
 import { StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import { ThemedText } from "./themed/ThemedText";
 import { ThemedView } from "./themed/ThemedView";
 import BillsCountDisplay from "./BillsCountDisplay";
+import { RootState } from "@/store/configure-store";
 
 const AdminRemainingBills = () => {
   const { bills } = useSelector((state: RootState) => state.atm);

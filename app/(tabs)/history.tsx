@@ -1,7 +1,7 @@
 import { ThemedView } from "@/components/themed/ThemedView";
 import TransactionItem from "@/components/TransactionItem";
+import { RootState } from "@/store/configure-store";
 import { Transaction } from "@/store/slices/historySlice";
-import { RootState } from "@/store/store";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";

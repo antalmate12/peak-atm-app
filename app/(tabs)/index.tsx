@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
 import { ThemedView } from "@/components/themed/ThemedView";
 import { ThemedText } from "@/components/themed/ThemedText";
-import { RootState } from "@/store/store";
 import { withdrawThunk } from "@/store/thunks/withdraw.thunk";
 import { Transaction } from "@/store/slices/historySlice";
 import { useThemeColor } from "@/hooks/useThemeColor";
@@ -11,6 +10,7 @@ import WithdrawErrorMessage from "@/components/WithdrawErrorMessage";
 import WithdrawDispensedBills from "@/components/WithdrawDispensedBills";
 import BillsCountDisplay from "@/components/BillsCountDisplay";
 import FilledButton from "@/components/FilledButton";
+import { RootState } from "@/store/configure-store";
 
 const UserWithdrawal = () => {
   const dispatch = useDispatch();

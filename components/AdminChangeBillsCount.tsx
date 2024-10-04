@@ -1,4 +1,3 @@
-import { RootState } from "@/store/store";
 import { useEffect, useState } from "react";
 import {
   View,
@@ -15,6 +14,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { updateBills } from "@/store/slices/atmSlice";
 import FilledButton from "./FilledButton";
 import { formatPrice } from "@/utils/format-price";
+import { RootState } from "@/store/configure-store";
 
 const AdminChangeBillsCount = () => {
   const dispatch = useDispatch();
