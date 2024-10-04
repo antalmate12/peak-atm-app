@@ -13,6 +13,7 @@ import { ThemedView } from "./themed/ThemedView";
 import { ThemedText } from "./themed/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { updateBills } from "@/store/slices/atmSlice";
+import FilledButton from "./FilledButton";
 
 const AdminChangeBillsCount = () => {
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const AdminChangeBillsCount = () => {
             </TouchableOpacity>
           </ThemedView>
         ))}
-        <Button title="Save Changes" onPress={handleSave} />
+        <FilledButton title="Save Changes" onPress={handleSave} />
       </ThemedView>
     </ThemedView>
   );
