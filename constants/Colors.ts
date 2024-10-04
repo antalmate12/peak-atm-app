@@ -24,3 +24,5 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+export const PRIMARY_INDIGO = '#3F00FF';

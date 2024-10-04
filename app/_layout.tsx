@@ -41,23 +41,26 @@ export default function RootLayout() {
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
           <GestureHandlerRootView style={{ flex: 1 }}>
-          <Stack
-            screenOptions={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-            }}
-            initialRouteName="(tabs)"
-          >
-            <Stack.Screen
-              name="(tabs)"
-              options={{
-                headerShown: false,
-                headerBackVisible: false,
-                headerTitleAlign: "center",
+            <Stack
+              screenOptions={{
+                headerShown: true,
+                headerBackTitleVisible: false,
               }}
-            />
-            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-          </Stack>
+            >
+              <Stack.Screen
+                name="(tabs)"
+                options={{
+                  headerShown: false,
+                  headerBackVisible: false,
+                  headerTitleAlign: "center",
+                }}
+              />
+
+              <Stack.Screen
+                name="+not-found"
+                options={{ headerShown: false }}
+              />
+            </Stack>
           </GestureHandlerRootView>
         </ThemeProvider>
       </RootSiblingParent>

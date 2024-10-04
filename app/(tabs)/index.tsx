@@ -8,13 +8,16 @@ import { withdrawThunk } from "@/store/thunks/withdraw.thunk";
 import { Transaction } from "@/store/slices/historySlice";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import WithdrawErrorMessage from "@/components/WithdrawErrorMessage";
+import WithdrawDispensedBills from "@/components/WithdrawDispensedBills";
+import BillsCountDisplay from "@/components/BillsCountDisplay";
+import FilledButton from "@/components/FilledButton";
 
 const UserWithdrawal = () => {
   const dispatch = useDispatch();
   const { error, bills } = useSelector((state: RootState) => state.atm);
-  const color = useThemeColor({}, 'text');
-  
-  const [amount, setAmount] = useState('');
+  const color = useThemeColor({}, "text");
+
+  const [amount, setAmount] = useState("");
   const [lastSuccessfullTransaction, setLastSuccessfullTransaction] =
     useState<Transaction | null>(null);
 
@@ -23,6 +26,7 @@ const UserWithdrawal = () => {
       withdrawThunk(parseInt(amount)) as unknown as any
     );
     setLastSuccessfullTransaction(res.success ? res : null);
+    setAmount("");
   };
 
   return (
@@ -38,12 +42,20 @@ const UserWithdrawal = () => {
         />
         <ThemedText style={styles.inputCurrency}>HUF</ThemedText>
       </ThemedView>
-      <Button title="Withdraw" onPress={handleWithdraw} disabled={!amount || amount === '0'} />
-      
+      {/* <Button
+        title="Withdraw"
+        onPress={handleWithdraw}
+        disabled={!amount || amount === "0"}
+      /> */}
+      <FilledButton  onPress={handleWithdraw} title="Withdraw" disabled={!amount || amount === "0"} />
+
       {error && <WithdrawErrorMessage error={error} />}
 
       {lastSuccessfullTransaction && (
-        <ThemedText>{JSON.stringify(lastSuccessfullTransaction)}</ThemedText>
+        <>
+          <ThemedText style={styles.dispensedTitle}>Dispensed Bills</ThemedText>
+          <BillsCountDisplay bills={lastSuccessfullTransaction.dispensed} />
+        </>
       )}
     </ThemedView>
   );
@@ -77,6 +89,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     opacity: 0.7,
   },
+  dispensedTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 24,
+  }
 });
 
 export default UserWithdrawal;

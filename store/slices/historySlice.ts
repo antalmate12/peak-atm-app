@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AtmBills } from './atmSlice';
 
 export interface Transaction {
   amount: number;
   time: string;
   success: boolean;
-  dispensed: { [key: number]: number };
+  dispensed: AtmBills;
 }
 
 interface HistoryState {

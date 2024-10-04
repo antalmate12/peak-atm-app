@@ -2,7 +2,7 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
+import { Colors, PRIMARY_INDIGO } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
@@ -11,14 +11,13 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: PRIMARY_INDIGO,
         headerShown: true,
         headerTitleAlign: "center",
       }}
-      
     >
       <Tabs.Screen
-        name="withdrawal"
+        name="index"
         options={{
           title: "Peak ATM",
           tabBarIcon: ({ color, focused }) => (
@@ -35,12 +34,24 @@ export default function TabLayout() {
           title: "History",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "alert" : "alert"}
+              name={focused ? "list-circle" : "list-circle-outline"}
               color={color}
             />
           ),
         }}
-      /> 
+      />
+      <Tabs.Screen
+        name="admin"
+        options={{
+          title: "Admin",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "settings" : "settings-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

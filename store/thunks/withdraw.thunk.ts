@@ -1,3 +1,4 @@
+import Toast from "react-native-root-toast";
 import {
   AtmBills,
   AtmState,
@@ -19,6 +20,10 @@ export const withdrawThunk = (amount: number) => {
       5000: 0,
       2000: 0,
     };
+
+    console.log(remainingAmount)
+    console.log(availableBills);
+    console.log(remainingAmount);
 
     for (const bill of BILL_VALUES) {
       const billValue = parseInt(bill);
@@ -51,6 +56,10 @@ export const withdrawThunk = (amount: number) => {
       dispatch(updateBills(availableBills));
       dispatch(setError(null));
     }
+
+    Toast.show(message, {
+      duration: Toast.durations.SHORT,
+    });
 
     dispatch(addHistory(transaction));
 

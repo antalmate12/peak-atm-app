@@ -29,14 +29,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF0000",
   },
   errorViewDark: {
-    backgroundColor: "#FF0000",
+    backgroundColor: "#990000",
   },
 
   errorText: {
     textAlign: "center",
   },
-  errorTextLight: {},
-  errorTextDark: {},
+  errorTextLight: {
+    color: "white",
+  },
+  errorTextDark: {
+    color: "white",
+  },
 });
 
 export default WithdrawErrorMessage;
