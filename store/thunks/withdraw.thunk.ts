@@ -60,6 +60,7 @@ export const withdrawThunk = (amount: number) => {
           success: false,
           dispensed: dispensedBills,
         };
+        dispatch(addHistory(transaction));
         showError("Can't dispense the exact amount with available bills");
         return transaction;
       }
