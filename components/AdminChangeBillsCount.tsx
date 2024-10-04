@@ -14,6 +14,7 @@ import { ThemedText } from "./themed/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { updateBills } from "@/store/slices/atmSlice";
 import FilledButton from "./FilledButton";
+import { formatPrice } from "@/utils/format-price";
 
 const AdminChangeBillsCount = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const AdminChangeBillsCount = () => {
       <ThemedView style={styles.container}>
         {Object.keys(bills).map((bill) => (
           <ThemedView key={bill} style={styles.billRow}>
-            <ThemedText style={styles.billLabel}>{bill} HUF</ThemedText>
+            <ThemedText style={styles.billLabel}>{formatPrice(parseInt(bill))}</ThemedText>
             <TouchableOpacity
               onPress={() => handleDecrement(bill as keyof typeof bills)}
             >
